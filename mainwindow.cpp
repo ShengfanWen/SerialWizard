@@ -521,6 +521,7 @@ void MainWindow::createConnect() {
     connect(this, &MainWindow::currentWriteCountChanged, this, &MainWindow::updateCurrentWriteCount);
 
     connect(openSerialButton, &QPushButton::clicked, [=](bool value) {
+        Q_UNUSED(value);
         if (!isReadWriterOpen()) {
             openReadWriter();
         } else {
@@ -563,6 +564,7 @@ void MainWindow::createConnect() {
     });
 
     connect(sendFrameButton, &QPushButton::clicked, [this](bool value) {
+        Q_UNUSED(value);
         if (!isReadWriterConnected()) {
             handlerSerialNotOpen();
             return;
@@ -639,6 +641,7 @@ void MainWindow::createConnect() {
     });
 
     connect(sendAllButton, &QPushButton::clicked, [this](bool value) {
+        Q_UNUSED(value);
                 if (!isReadWriterConnected()) {
                     handlerSerialNotOpen();
                     return;
