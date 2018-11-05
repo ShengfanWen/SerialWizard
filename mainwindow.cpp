@@ -27,7 +27,7 @@
 #include <data/BridgeReadWriter.h>
 #include <QtSerialPort/QSerialPortInfo>
 
-#include "MainWindow.h"
+#include "mainwindow.h"
 #include "CalculateCheckSumDialog.h"
 #include "global.h"
 
