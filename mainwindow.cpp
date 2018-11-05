@@ -113,6 +113,7 @@ void MainWindow::initUi() {
                                                  << "256000"
 
     );
+    serialPortBaudRateComboBox->setEditable(true);
     serialPortBaudRateLabel->setBuddy(serialPortBaudRateComboBox);
 
 
