@@ -37,7 +37,7 @@
 #include "serial/LineSerialController.h"
 #include "serial/FrameSerialController.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), receiveCount(0), sendCount(0) {
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), sendCount(0), receiveCount(0) {
 
     init();
     initUi();
