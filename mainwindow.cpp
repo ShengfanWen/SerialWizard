@@ -1066,12 +1066,15 @@ void MainWindow::readData() {
 }
 
 qint64 MainWindow::writeData(const QByteArray &data) {
+    qint64 count = 0;
     if (!data.isEmpty() && isReadWriterConnected()) {
-        auto count = _readWriter->write(data);
+        count = _readWriter->write(data);
         displaySentData(data);
         sendCount += count;
         emit writeBytesChanged(sendCount);
     }
+
+    return count;
 }
 
 void MainWindow::startAutoSendTimerIfNeed() {

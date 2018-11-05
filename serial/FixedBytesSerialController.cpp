@@ -36,5 +36,7 @@ int FixedBytesSerialController::getTotalCount() {
 
 int FixedBytesSerialController::setFixedCount(int count) {
     _count = count;
+
+    return count;
 }
 
