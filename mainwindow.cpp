@@ -27,6 +27,11 @@
 #include <data/BridgeReadWriter.h>
 #include <QtSerialPort/QSerialPortInfo>
 
+#if WIN32
+#include <windows.h>
+#include <windowsx.h>
+#include <dbt.h>
+#endif
 #include "mainwindow.h"
 #include "CalculateCheckSumDialog.h"
 #include "global.h"
@@ -54,6 +59,41 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), sendCount(0), rec
 MainWindow::~MainWindow() {
     writeSettings();
     closeReadWriter();
+}
+
+bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+{
+#if WIN32
+    MSG *msg = reinterpret_cast<MSG*>(message);
+    PDEV_BROADCAST_HDR lpdb = reinterpret_cast<PDEV_BROADCAST_HDR>(msg->lParam);
+
+    // Device changed message
+    if (msg->message == WM_DEVICECHANGE)
+    {
+        // Only care about plug-in or plug-out.
+        if (msg->wParam == DBT_DEVICEARRIVAL || msg->wParam == DBT_DEVICEREMOVECOMPLETE)
+        {
+            // Only care about PORT type device.
+            if (lpdb->dbch_devicetype == DBT_DEVTYP_PORT)
+            {
+                PDEV_BROADCAST_PORT_W port = reinterpret_cast<PDEV_BROADCAST_PORT_W>(lpdb);
+                //Get dbcp_name length
+                size_t len = port->dbcp_size - sizeof(port->dbcp_devicetype) - sizeof(port->dbcp_reserved) - sizeof(port->dbcp_size);
+                wchar_t *name = new wchar_t[len];
+                QString serialPortName;
+                memcpy(name, port->dbcp_name, len);
+                serialPortName = QString::fromWCharArray(name);
+                emit this->serialPortUpdate(msg->wParam == DBT_DEVICEARRIVAL ? true : false, serialPortName);
+                delete [] name;
+                return true;
+            }
+        }
+    }
+
+    return QMainWindow::nativeEvent(eventType, message, result);
+#else
+    return QMainWindow::nativeEvent(eventType, message, result);
+#endif
 }
 
 void MainWindow::init() {
@@ -669,6 +709,8 @@ void MainWindow::createConnect() {
             [this] {
         sendNextData();
             });
+
+    connect(this, SIGNAL(serialPortChanged(bool, QString)), this, SLOT(serialPortUpdate(bool, QString)));
 }
 
 void MainWindow::setOpenButtonText(bool isOpen) {
@@ -1200,6 +1242,15 @@ void MainWindow::updateSendType() {
     }
 }
 
+void MainWindow::serialPortUpdate(bool isInsert, QString serialPortName)
+{
+    QString text = QString("检测到") + serialPortName + (isInsert ? QString("已插入") : QString("已拔出"));
+
+    serialPortNameComboBox->clear();
+    serialPortNameComboBox->addItems(getSerialNameList());
+
+    this->updateStatusMessage(text);
+}
 
 
 

@@ -72,6 +72,8 @@ signals:
 
     void currentWriteCountChanged(qint64 count);
 
+    void serialPortChanged(bool isInsert, QString serialPortName);
+
 public slots:
 
 
@@ -124,6 +126,11 @@ public slots:
     void clearTcpClient();
 
     void updateSendType();
+
+    void serialPortUpdate(bool isInsert, QString serialPortName);
+
+protected:
+    bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
 
 
 private:
