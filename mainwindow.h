@@ -32,7 +32,7 @@ class QButtonGroup;
 class SerialController;
 
 #include <QtWidgets/QMainWindow>
-#include "FrameInfoDialog.h"
+//#include "FrameInfoDialog.h"
 
 struct RunConfig {
     QString lastDir;
@@ -148,9 +148,9 @@ private:
 
     void writeSettings();
 
-    FrameInfo readFrameInfo() const;
+//    FrameInfo readFrameInfo() const;
 
-    void writeFrameInfo(const FrameInfo &info) const;
+//    void writeFrameInfo(const FrameInfo &info) const;
 
     void createActions();
 
@@ -198,9 +198,9 @@ private:
     qint64 sendCount{0};
     qint64 receiveCount{0};
 
-    QRadioButton *serialRadioButton;
-    QRadioButton *tcpRadioButton;
-    QRadioButton *brigdeRadioButton;
+//    QRadioButton *serialRadioButton;
+//    QRadioButton *tcpRadioButton;
+//    QRadioButton *brigdeRadioButton;
 
 
     QButtonGroup *readWriterButtonGroup;
@@ -214,9 +214,9 @@ private:
     QPushButton *openSerialButton;
 
     // TCP设置
-    QLineEdit *tcpAddressLineEdit;
-    QLineEdit *tcpPortLineEdit;
-    QLabel *tcpClientLabel;
+//    QLineEdit *tcpAddressLineEdit;
+//    QLineEdit *tcpPortLineEdit;
+//    QLabel *tcpClientLabel;
 
     // 接收设置
     QCheckBox *addLineReturnCheckBox;
@@ -232,7 +232,7 @@ private:
     QCheckBox *displaySendDataAsHexCheckBox;
     QCheckBox *autoSendCheckBox;
     QLineEdit *sendIntervalLineEdit;
-    QPushButton *frameInfoSettingButton;
+//    QPushButton *frameInfoSettingButton;
     QPushButton *saveSentDataButton;
     QPushButton *clearSentDataButton;
 
@@ -241,7 +241,7 @@ private:
     QLineEdit *currentSendCountLineEdit;
     QLabel *totalSendCountLabel;
 
-    FrameInfo *frameInfo;
+//    FrameInfo *frameInfo;
 
 
     QTextBrowser *receiveDataBrowser;
@@ -249,10 +249,10 @@ private:
 
     QTextEdit *sendTextEdit;
 
-    QPushButton *sendFrameButton;
-    QPushButton *sendLineButton;
-    QPushButton *sendFixBytesButton;
-    QLineEdit *byteCountLineEdit;
+//    QPushButton *sendFrameButton;
+//    QPushButton *sendLineButton;
+//    QPushButton *sendFixBytesButton;
+//    QLineEdit *byteCountLineEdit;
     QPushButton *sendAllButton;
 
     AutoSendState autoSendState{AutoSendState::NotStart};
