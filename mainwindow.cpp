@@ -412,9 +412,9 @@ void MainWindow::openReadWriter() {
         settings->name = serialPortNameComboBox->currentText();
         settings->baudRate = serialPortBaudRateComboBox->currentText().toInt();
 
-        settings->dataBits = (QSerialPort::DataBits) serialPortDataBitsComboBox->currentText().toInt();
-        settings->stopBits = (QSerialPort::StopBits) serialPortStopBitsComboBox->currentData().toInt();
-        settings->parity = (QSerialPort::Parity) serialPortParityComboBox->currentData().toInt();
+        settings->dataBits = static_cast<QSerialPort::DataBits>(serialPortDataBitsComboBox->currentText().toInt());
+        settings->stopBits = static_cast<QSerialPort::StopBits>(serialPortStopBitsComboBox->currentData().toInt());
+        settings->parity = static_cast<QSerialPort::Parity>(serialPortParityComboBox->currentData().toInt());
         auto readWriter = new SerialReadWriter(this);
         readWriter->setSerialSettings(*settings);
         qDebug() << settings->name << settings->baudRate << settings->dataBits << settings->stopBits
@@ -453,9 +453,9 @@ void MainWindow::openReadWriter() {
         settings->name = serialPortNameComboBox->currentText();
         settings->baudRate = serialPortBaudRateComboBox->currentText().toInt();
 
-        settings->dataBits = (QSerialPort::DataBits) serialPortDataBitsComboBox->currentText().toInt();
-        settings->stopBits = (QSerialPort::StopBits) serialPortStopBitsComboBox->currentData().toInt();
-        settings->parity = (QSerialPort::Parity) serialPortParityComboBox->currentData().toInt();
+        settings->dataBits = static_cast<QSerialPort::DataBits>(serialPortDataBitsComboBox->currentText().toInt());
+        settings->stopBits = static_cast<QSerialPort::StopBits>(serialPortStopBitsComboBox->currentData().toInt());
+        settings->parity = static_cast<QSerialPort::Parity>(serialPortParityComboBox->currentData().toInt());
 
         auto address = tcpAddressLineEdit->text();
         bool ok;
@@ -826,9 +826,9 @@ void MainWindow::readSettings() {
     settings.beginGroup("SerialSettings");
     auto nameIndex = settings.value("name", 0).toInt();
     auto baudRateIndex = settings.value("baud_rate", 0).toInt();
-    auto dataBitsIndex = (QSerialPort::DataBits) settings.value("data_bits", 0).toInt();
-    auto stopBitsIndex = (QSerialPort::StopBits) settings.value("stop_bits", 0).toInt();
-    auto parityIndex = (QSerialPort::Parity) settings.value("parity", 0).toInt();
+    auto dataBitsIndex = static_cast<QSerialPort::DataBits>(settings.value("data_bits", 0).toInt());
+    auto stopBitsIndex = static_cast<QSerialPort::StopBits>(settings.value("stop_bits", 0).toInt());
+    auto parityIndex = static_cast<QSerialPort::Parity>(settings.value("parity", 0).toInt());
     auto sendText = settings.value("send_text", "").toString();
 
     serialPortNameComboBox->setCurrentIndex(nameIndex);
@@ -953,8 +953,8 @@ FrameInfo MainWindow::readFrameInfo() const {
 
     info.frame = settings.value("frame",
                                 "AA A0 5F 88 24 00 00 BC AE 04 90 05 09 15 DF 00 0A 14 D0 FB B4 AB D3 C3 D3 EF 31 31 C7 EB D5 BE CE C8 B7 F6 BA C3 02 09 05 1C D0 FB B4 AB D3 C3 D3 EF 31 32 B3 B5 C1 BE D7 AA CD E4 C7 EB D5 BE CE C8 B7 F6 BA C3 02 09 05 20 D0 FB B4 AB D3 C3 D3 EF 31 33 C7 EB B1 A3 B9 DC BA C3 CB E6 C9 ED D0 AF B4 F8 B5 C4 B2 C6 CE EF 02 09 05 1E D0 FB B4 AB D3 C3 D3 EF 31 34 BB B6 D3 AD B3 CB D7 F8 B1 BE B9 AB CB BE B9 B7 53 55").toString();
-    info.head = (unsigned char) settings.value("head", 0xAA).toInt();
-    info.end = (unsigned char) settings.value("end", 0x55).toInt();
+    info.head = static_cast<unsigned char>(settings.value("head", 0xAA).toInt());
+    info.end = static_cast<unsigned char>(settings.value("end", 0x55).toInt());
     info.lenIndex = settings.value("len_index", 3).toInt();
     info.lenCount = settings.value("len_count", 1).toInt();
     info.headLen = settings.value("head_len", 5).toInt();
