@@ -89,11 +89,8 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
             }
         }
     }
-
-    return QMainWindow::nativeEvent(eventType, message, result);
-#else
-    return QMainWindow::nativeEvent(eventType, message, result);
 #endif
+    return QMainWindow::nativeEvent(eventType, message, result);
 }
 
 void MainWindow::init() {
