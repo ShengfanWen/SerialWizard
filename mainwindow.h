@@ -23,7 +23,7 @@ class QTimer;
 
 class SerialSettings;
 
-class AbstractReadWriter;
+class SerialReadWriter;
 
 class QRadioButton;
 
@@ -193,7 +193,7 @@ private:
     QAction *exitAct;
     QAction *validateDataAct;
 
-    AbstractReadWriter *_readWriter{nullptr};
+    SerialReadWriter *_readWriter{nullptr};
 
     qint64 sendCount{0};
     qint64 receiveCount{0};

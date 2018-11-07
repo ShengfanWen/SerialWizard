@@ -6,7 +6,7 @@
 #define SERIALWIZARD_SERIALREADWRITER_H
 
 #include <QtSerialPort/QSerialPort>
-#include "AbstractReadWriter.h"
+//#include "AbstractReadWriter.h"
 
 struct SerialSettings {
     QString name;
@@ -19,26 +19,28 @@ struct SerialSettings {
 };
 
 
-class SerialReadWriter : public AbstractReadWriter {
+class SerialReadWriter : public QObject{
 Q_OBJECT
 public:
     explicit SerialReadWriter(QObject *parent = nullptr);
 
     void setSerialSettings(SerialSettings serialSettings);
 
-    QString settingsText() const override;
+    QString settingsText() const;
 
-    bool open() override;
+    bool open();
 
-    bool isOpen() override;
+    bool isOpen();
 
-    bool isConnected() override;
+    bool isConnected();
 
-    void close() override;
+    void close();
 
-    QByteArray readAll() override;
+    QByteArray readAll();
 
-    qint64 write(const QByteArray &byteArray) const override;
+    qint64 write(const QByteArray &byteArray) const;
+signals:
+    void readyRead();
 
 private:
     SerialSettings settings;

@@ -20,7 +20,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     global.cpp \
     CalculateCheckSumDialog.cpp \
-    data/AbstractReadWriter.cpp \
     data/SerialReadWriter.cpp \
     serial/SerialController.cpp \
     serial/NormalSerialController.cpp \
@@ -30,7 +29,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     global.h \
     CalculateCheckSumDialog.h \
-    data/AbstractReadWriter.h \
     data/SerialReadWriter.h \
     serial/SerialController.h \
     serial/LineSerialController.h \

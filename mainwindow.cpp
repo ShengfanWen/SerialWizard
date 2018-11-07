@@ -524,7 +524,7 @@ void MainWindow::openReadWriter() {
 
 //        _readWriter = readWriter;
 //    }
-    connect(_readWriter, &AbstractReadWriter::readyRead,
+    connect(_readWriter, &SerialReadWriter::readyRead,
             this, &MainWindow::readData);
     emit serialStateChanged(result);
 }

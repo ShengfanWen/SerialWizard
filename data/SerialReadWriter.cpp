@@ -5,8 +5,8 @@
 #include "SerialReadWriter.h"
 #include <QDebug>
 
-SerialReadWriter::SerialReadWriter(QObject *parent) : AbstractReadWriter(parent) {
-
+SerialReadWriter::SerialReadWriter(QObject *parent){
+    Q_UNUSED(parent);
 }
 
 bool SerialReadWriter::open() {
