@@ -34,10 +34,10 @@ class SerialController;
 #include <QtWidgets/QMainWindow>
 //#include "FrameInfoDialog.h"
 
-struct RunConfig {
-    QString lastDir;
-    QString lastFilePath;
-};
+//struct RunConfig {
+//    QString lastDir;
+//    QString lastFilePath;
+//};
 
 
 class MainWindow : public QMainWindow {
@@ -176,7 +176,7 @@ private:
 
     QStringList getSerialNameList();
 
-    RunConfig *runConfig{nullptr};
+//    RunConfig *runConfig{nullptr};
 
     //状态栏
     QLabel *statusBarReadBytesLabel;

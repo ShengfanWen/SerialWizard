@@ -748,15 +748,15 @@ void MainWindow::createMenu() {
 }
 
 void MainWindow::open() {
-    auto lastDir = runConfig->lastDir;
-    QString fileName = QFileDialog::getOpenFileName(this, tr("打开数据文件"), lastDir, "");
+//    auto lastDir = runConfig->lastDir;
+    QString fileName = QFileDialog::getOpenFileName(this, tr("打开数据文件"));
     if (fileName.isEmpty()) {
         return;
     }
 
     QFile file(fileName);
     if (file.open(QIODevice::ReadOnly)) {
-        runConfig->lastDir = getFileDir(fileName);
+//        runConfig->lastDir = getFileDir(fileName);
         auto data = file.readAll();
         sendTextEdit->setText(QString::fromLocal8Bit(data));
     }
@@ -912,7 +912,7 @@ void MainWindow::readSettings() {
 
 
     settings.beginGroup("TcpSettings");
-    auto tcpPort = settings.value("tcp_port").toInt();
+//    auto tcpPort = settings.value("tcp_port").toInt();
 //    tcpPortLineEdit->setText(QString::number(tcpPort));
 
     sendTextEdit->setText(sendText);
@@ -924,9 +924,9 @@ void MainWindow::readSettings() {
     auto lastDir = settings.value("last_dir", "").toString();
     auto lastFilePath = settings.value("last_file_path", "").toString();
 
-    runConfig = new RunConfig;
-    runConfig->lastDir = lastDir;
-    runConfig->lastFilePath = lastFilePath;
+//    runConfig = new RunConfig;
+//    runConfig->lastDir = lastDir;
+//    runConfig->lastFilePath = lastFilePath;
 
     _loopSend = loopSend;
 
@@ -975,9 +975,9 @@ void MainWindow::writeSettings() {
     settings.beginGroup("TcpSettings");
 //    settings.setValue("tcp_port", tcpPortLineEdit->text().toInt());
 
-    settings.beginGroup("RunConfig");
-    settings.setValue("last_dir", runConfig->lastDir);
-    settings.setValue("last_file_path", runConfig->lastFilePath);
+//    settings.beginGroup("RunConfig");
+//    settings.setValue("last_dir", runConfig->lastDir);
+//    settings.setValue("last_file_path", runConfig->lastFilePath);
 
     settings.sync();
 
@@ -1021,9 +1021,8 @@ void MainWindow::clearSentData() {
 }
 
 void MainWindow::saveSentData() {
-    auto lastDir = runConfig->lastDir;
+//    auto lastDir = runConfig->lastDir;
     QString fileName = QFileDialog::getSaveFileName(this, tr("保存发送数据"),
-                                                    lastDir,
                                                     tr("Text (*.txt)"));
     if (fileName.isEmpty()) {
         return;
@@ -1035,7 +1034,7 @@ void MainWindow::saveSentData() {
     QFile file(fileName);
     if (file.open(QIODevice::WriteOnly)) {
 
-        runConfig->lastDir = getFileDir(fileName);
+//        runConfig->lastDir = getFileDir(fileName);
 
         QDataStream in(&file);
 
