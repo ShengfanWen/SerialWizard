@@ -21,14 +21,10 @@ SOURCES += main.cpp\
     global.cpp \
     data/SerialReadWriter.cpp \
     serial/SerialController.cpp \
-    serial/NormalSerialController.cpp \
-    serial/LineSerialController.cpp \
-    serial/FixedBytesSerialController.cpp
+    serial/NormalSerialController.cpp
 
 HEADERS  += mainwindow.h \
     global.h \
     data/SerialReadWriter.h \
     serial/SerialController.h \
-    serial/LineSerialController.h \
-    serial/FixedBytesSerialController.h \
     serial/NormalSerialController.h

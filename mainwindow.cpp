@@ -38,8 +38,8 @@
 
 #include "serial/SerialController.h"
 #include "serial/NormalSerialController.h"
-#include "serial/FixedBytesSerialController.h"
-#include "serial/LineSerialController.h"
+//#include "serial/FixedBytesSerialController.h"
+//#include "serial/LineSerialController.h"
 //#include "serial/FrameSerialController.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), sendCount(0), receiveCount(0) {
@@ -1185,7 +1185,7 @@ void MainWindow::updateSendType() {
     if (_sendType == SendType::Normal) {
         newController = new NormalSerialController(serialController);
     } else if (_sendType == SendType::Line) {
-        newController = new LineSerialController(serialController);
+//        newController = new LineSerialController(serialController);
     } else if (_sendType == SendType::Frame) {
 //        auto controller = new FrameSerialController(serialController);
 //        if (frameInfo!= nullptr) {
@@ -1193,9 +1193,9 @@ void MainWindow::updateSendType() {
 //        }
 //        newController = controller;
     } else if (_sendType == SendType::FixedBytes) {
-        auto controller = new FixedBytesSerialController(serialController);
+//        auto controller = new FixedBytesSerialController(serialController);
 //        controller->setFixedCount(byteCountLineEdit->text().toInt());
-        newController = controller;
+//        newController = controller;
     }
 
     if (newController != nullptr) {
