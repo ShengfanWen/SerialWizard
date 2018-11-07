@@ -183,9 +183,9 @@ private:
     QLabel *statusBarWriteBytesLabel;
     QPushButton *statusBarResetCountButton;
 
-    QMenu *fileMenu;
+//    QMenu *fileMenu;
     QMenu *editMenu;
-    QMenu *toolMenu;
+//    QMenu *toolMenu;
     QMenu *helpMenu;
 
     QAction *openAct;

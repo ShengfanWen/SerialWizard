@@ -737,12 +737,12 @@ void MainWindow::createActions() {
 }
 
 void MainWindow::createMenu() {
-    fileMenu = menuBar()->addMenu(tr("文件(&F)"));
-    fileMenu->addAction(openAct);
-    fileMenu->addAction(saveAct);
+//    fileMenu = menuBar()->addMenu(tr("文件(&F)"));
+//    fileMenu->addAction(openAct);
+//    fileMenu->addAction(saveAct);
 
-    toolMenu = menuBar()->addMenu(tr("工具(&T)"));
-    toolMenu->addAction(validateDataAct);
+//    toolMenu = menuBar()->addMenu(tr("工具(&T)"));
+//    toolMenu->addAction(validateDataAct);
 
 
 }
