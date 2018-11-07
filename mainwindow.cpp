@@ -687,7 +687,7 @@ void MainWindow::createConnect() {
                 if (autoSendState == AutoSendState::Sending) {
                     stopAutoSend();
                 } else {
-                    _sendType = SendType::Normal;
+//                    _sendType = SendType::Normal;
                     updateSendData(sendHexCheckBox->isChecked(), sendTextEdit->toPlainText());
                     updateSendType();
                     sendNextData();
@@ -1176,27 +1176,27 @@ QStringList MainWindow::getSerialNameList() {
 
 void MainWindow::updateSendType() {
 
-    if (serialController->sendType() == _sendType) {
-        return;
-    }
+//    if (serialController->sendType() == _sendType) {
+//        return;
+//    }
 
     SerialController * newController= nullptr;
 
-    if (_sendType == SendType::Normal) {
+//    if (_sendType == SendType::Normal) {
         newController = new NormalSerialController(serialController);
-    } else if (_sendType == SendType::Line) {
+//    } else if (_sendType == SendType::Line) {
 //        newController = new LineSerialController(serialController);
-    } else if (_sendType == SendType::Frame) {
+//    } else if (_sendType == SendType::Frame) {
 //        auto controller = new FrameSerialController(serialController);
 //        if (frameInfo!= nullptr) {
 //            controller->setFrameInfo(*frameInfo);
 //        }
 //        newController = controller;
-    } else if (_sendType == SendType::FixedBytes) {
+//    } else if (_sendType == SendType::FixedBytes) {
 //        auto controller = new FixedBytesSerialController(serialController);
 //        controller->setFixedCount(byteCountLineEdit->text().toInt());
 //        newController = controller;
-    }
+//    }
 
     if (newController != nullptr) {
         serialController = newController;

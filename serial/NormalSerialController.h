@@ -16,7 +16,7 @@ public:
 
     QByteArray getNextFrame() override;
 
-    MainWindow::SendType sendType() override;
+//    MainWindow::SendType sendType() override;
 
     int getTotalCount() override;
 };

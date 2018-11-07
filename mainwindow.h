@@ -55,9 +55,9 @@ public:
 
     ~MainWindow() override;
 
-    enum class SendType{
-       Normal, Line, Frame,FixedBytes
-    };
+//    enum class SendType{
+//       Normal, Line, Frame,FixedBytes
+//    };
 
 
 public:
@@ -184,13 +184,13 @@ private:
     QPushButton *statusBarResetCountButton;
 
 //    QMenu *fileMenu;
-    QMenu *editMenu;
+//    QMenu *editMenu;
 //    QMenu *toolMenu;
-    QMenu *helpMenu;
+//    QMenu *helpMenu;
 
 //    QAction *openAct;
 //    QAction *saveAct;
-    QAction *exitAct;
+//    QAction *exitAct;
 //    QAction *validateDataAct;
 
     SerialReadWriter *_readWriter{nullptr};
@@ -267,7 +267,7 @@ private:
 
     bool _loopSend{false};
 
-    SendType _sendType{SendType ::Normal};
+//    SendType _sendType{SendType ::Normal};
 };
 
 

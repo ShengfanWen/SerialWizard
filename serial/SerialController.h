@@ -41,7 +41,7 @@ public:
     QByteArray data();
     QStringList dataList();
 
-    virtual MainWindow::SendType sendType()=0;
+//    virtual MainWindow::SendType sendType()=0;
 
 protected:
     bool _isHex{false};
