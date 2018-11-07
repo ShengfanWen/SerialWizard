@@ -19,7 +19,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     global.cpp \
-    CalculateCheckSumDialog.cpp \
     data/SerialReadWriter.cpp \
     serial/SerialController.cpp \
     serial/NormalSerialController.cpp \
@@ -28,7 +27,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     global.h \
-    CalculateCheckSumDialog.h \
     data/SerialReadWriter.h \
     serial/SerialController.h \
     serial/LineSerialController.h \

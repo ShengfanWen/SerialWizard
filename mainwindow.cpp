@@ -33,7 +33,7 @@
 #include <dbt.h>
 #endif
 #include "mainwindow.h"
-#include "CalculateCheckSumDialog.h"
+//#include "CalculateCheckSumDialog.h"
 #include "global.h"
 
 #include "serial/SerialController.h"
@@ -719,20 +719,20 @@ void MainWindow::setOpenButtonText(bool isOpen) {
 }
 
 void MainWindow::createActions() {
-    openAct = new QAction(tr("&打开(&O)"), this);
-    openAct->setShortcut(QKeySequence::Open);
-    openAct->setStatusTip(tr("打开一个文件"));
-    connect(openAct, &QAction::triggered, this, &MainWindow::open);
+//    openAct = new QAction(tr("&打开(&O)"), this);
+//    openAct->setShortcut(QKeySequence::Open);
+//    openAct->setStatusTip(tr("打开一个文件"));
+//    connect(openAct, &QAction::triggered, this, &MainWindow::open);
 
-    saveAct = new QAction(tr("&保存(&S)"), this);
-    saveAct->setShortcut(QKeySequence::Save);
-    saveAct->setStatusTip(tr("保存一个文件"));
-    connect(saveAct, &QAction::triggered, this, &MainWindow::save);
+//    saveAct = new QAction(tr("&保存(&S)"), this);
+//    saveAct->setShortcut(QKeySequence::Save);
+//    saveAct->setStatusTip(tr("保存一个文件"));
+//    connect(saveAct, &QAction::triggered, this, &MainWindow::save);
 
-    validateDataAct = new QAction(tr("计算校验(&C)"), this);
-    validateDataAct->setShortcut(tr("Ctr+C"));
-    validateDataAct->setStatusTip(tr("计算数据校验值"));
-    connect(validateDataAct, &QAction::triggered, this, &MainWindow::openDataValidator);
+//    validateDataAct = new QAction(tr("计算校验(&C)"), this);
+//    validateDataAct->setShortcut(tr("Ctr+C"));
+//    validateDataAct->setStatusTip(tr("计算数据校验值"));
+//    connect(validateDataAct, &QAction::triggered, this, &MainWindow::openDataValidator);
 
 }
 
@@ -771,8 +771,8 @@ void MainWindow::tool() {
 }
 
 void MainWindow::openDataValidator() {
-    CalculateCheckSumDialog dialog(this);
-    dialog.exec();
+//    CalculateCheckSumDialog dialog(this);
+//    dialog.exec();
 }
 
 void MainWindow::displayReceiveData(const QByteArray &data) {

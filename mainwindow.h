@@ -188,10 +188,10 @@ private:
 //    QMenu *toolMenu;
     QMenu *helpMenu;
 
-    QAction *openAct;
-    QAction *saveAct;
+//    QAction *openAct;
+//    QAction *saveAct;
     QAction *exitAct;
-    QAction *validateDataAct;
+//    QAction *validateDataAct;
 
     SerialReadWriter *_readWriter{nullptr};
 
