@@ -95,7 +95,6 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
 
 void MainWindow::init() {
     autoSendTimer = new QTimer();
-//    frameInfo = nullptr;
 }
 
 void MainWindow::initUi() {
@@ -103,30 +102,6 @@ void MainWindow::initUi() {
     setWindowTitle(tr("串口调试工具"));
 
     setMinimumSize(1280, 800);
-
-//    serialRadioButton = new QRadioButton(tr("串口"), this);
-//    tcpRadioButton = new QRadioButton("TCP", this);
-//    brigdeRadioButton = new QRadioButton(tr("桥接"), this);
-
-//    serialRadioButton->setChecked(true);
-
-//    serialRadioButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-//    tcpRadioButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-//    brigdeRadioButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-
-//    readWriterButtonGroup = new QButtonGroup;
-//    readWriterButtonGroup->addButton(serialRadioButton);
-//    readWriterButtonGroup->addButton(tcpRadioButton);
-//    readWriterButtonGroup->addButton(brigdeRadioButton);
-
-//    auto readWriterButtonLayout = new QHBoxLayout;
-//    readWriterButtonLayout->addWidget(serialRadioButton);
-//    readWriterButtonLayout->addWidget(tcpRadioButton);
-//    readWriterButtonLayout->addWidget(brigdeRadioButton);
-
-
-//    auto readWriterButtonGroupBox = new QGroupBox(tr("打开模式"));
-//    readWriterButtonGroupBox->setLayout(readWriterButtonLayout);
 
     auto serialPortNameLabel = new QLabel(tr("串口"), this);
     QStringList serialPortNameList = getSerialNameList();
@@ -191,27 +166,6 @@ void MainWindow::initUi() {
     serialPortSettingsGroupBox->setLayout(serialPortSettingsGridLayout);
 
     openSerialButton = new QPushButton(tr("打开"), this);
-
-//    tcpAddressLineEdit = new QLineEdit(this);
-//    tcpAddressLineEdit->setMaximumWidth(100);
-//    tcpAddressLineEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
-//    tcpPortLineEdit = new QLineEdit(this);
-//    tcpPortLineEdit->setMaximumWidth(50);
-//    tcpPortLineEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
-
-//    tcpClientLabel = new QLabel(this);
-
-//    auto tcpEditLayout = new QHBoxLayout;
-//    tcpEditLayout->addWidget(tcpAddressLineEdit);
-//    tcpEditLayout->addWidget(tcpPortLineEdit);
-//    auto tcpLayout = new QVBoxLayout;
-//    tcpLayout->addStretch();
-//    tcpLayout->addLayout(tcpEditLayout);
-//    tcpLayout->addWidget(tcpClientLabel);
-//    tcpLayout->addStretch();
-
-//    auto tcpGroupBox = new QGroupBox(tr("TCP设置"));
-//    tcpGroupBox->setLayout(tcpLayout);
 
     addLineReturnCheckBox = new QCheckBox(tr("自动换行"), this);
     displayReceiveDataAsHexCheckBox = new QCheckBox(tr("十六进制显示"), this);
@@ -303,49 +257,6 @@ void MainWindow::initUi() {
     auto sendSettingGroupBox = new QGroupBox(tr("发送设置"));
     sendSettingGroupBox->setLayout(sendSettingLayout);
 
-//    frameInfoSettingButton = new QPushButton(tr("设置数据帧信息"), this);
-//    sendFrameButton = new QPushButton(tr("发送下一帧"), this);
-
-//    auto frameLayout = new QVBoxLayout;
-//    frameLayout->addWidget(frameInfoSettingButton);
-//    frameLayout->addWidget(sendFrameButton);
-
-
-    //auto frameGroupBox = new QGroupBox(tr("按帧发送"));
-    //frameGroupBox->setLayout(frameLayout);
-
-    //auto lineGroupBox = new QGroupBox(tr("按行发送"));
-    //sendLineButton = new QPushButton(tr("发送下一行"));
-    //auto lineLayout = new QVBoxLayout;
-    //lineLayout->addWidget(sendLineButton);
-    //lineGroupBox->setLayout(lineLayout);
-
-    //auto fixBytesGroupBox = new QGroupBox(tr("按固定字节发送"));
-
-//    auto byteCountLabel = new QLabel(tr("每次发送字节数"), this);
-//    byteCountLineEdit = new QLineEdit(this);
-//    byteCountLineEdit->setMaximumWidth(50);
-//    byteCountLineEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
-//    byteCountLabel->setBuddy(byteCountLineEdit);
-
-//    auto byteCountLayout = new QHBoxLayout;
-//    byteCountLayout->addWidget(byteCountLabel);
-//    byteCountLayout->addWidget(byteCountLineEdit);
-
-//    sendFixBytesButton = new QPushButton(tr("发送下一帧"), this);
-
-//    auto sendBytByteCountLayout = new QVBoxLayout;
-//    sendBytByteCountLayout->addLayout(byteCountLayout);
-//    sendBytByteCountLayout->addWidget(sendFixBytesButton);
-    //fixBytesGroupBox->setLayout(sendBytByteCountLayout);
-
-//    auto optionSendLayout = new QVBoxLayout;
-    //optionSendLayout->addWidget(frameGroupBox);
-    //optionSendLayout->addWidget(lineGroupBox);
-    //optionSendLayout->addWidget(fixBytesGroupBox);
-
-//    optionSendLayout->setSizeConstraint(QLayout::SetFixedSize);
-
     sendDataBrowser = new QTextBrowser(this);
     sendDataBrowser->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -374,16 +285,13 @@ void MainWindow::initUi() {
     sendButtonLayout->setSizeConstraint(QLayout::SetFixedSize);
 
     auto sendLayout = new QHBoxLayout;
-//    sendLayout->addLayout(optionSendLayout);
     sendLayout->addWidget(sendTextEdit);
     sendLayout->addLayout(sendButtonLayout);
 
     sendLayout->setSizeConstraint(QLayout::SetFixedSize);
 
     auto mainVBoxLayout1 = new QVBoxLayout;
-//    mainVBoxLayout1->addWidget(readWriterButtonGroupBox);
     mainVBoxLayout1->addWidget(serialPortSettingsGroupBox);
-//    mainVBoxLayout1->addWidget(tcpGroupBox);
     mainVBoxLayout1->addWidget(openSerialButton);
     mainVBoxLayout1->addWidget(receiveSettingGroupBox);
     mainVBoxLayout1->addWidget(sendSettingGroupBox);
@@ -444,86 +352,24 @@ void MainWindow::openReadWriter() {
     }
     bool result;
 
-//    if (readWriterButtonGroup->checkedButton() == serialRadioButton) {
-        auto settings = new SerialSettings();
-        settings->name = serialPortNameComboBox->currentText();
-        settings->baudRate = serialPortBaudRateComboBox->currentText().toInt();
+    auto settings = new SerialSettings();
+    settings->name = serialPortNameComboBox->currentText();
+    settings->baudRate = serialPortBaudRateComboBox->currentText().toInt();
 
-        settings->dataBits = static_cast<QSerialPort::DataBits>(serialPortDataBitsComboBox->currentText().toInt());
-        settings->stopBits = static_cast<QSerialPort::StopBits>(serialPortStopBitsComboBox->currentData().toInt());
-        settings->parity = static_cast<QSerialPort::Parity>(serialPortParityComboBox->currentData().toInt());
-        auto readWriter = new SerialReadWriter(this);
-        readWriter->setSerialSettings(*settings);
-        qDebug() << settings->name << settings->baudRate << settings->dataBits << settings->stopBits
-                 << settings->parity;
-        result = readWriter->open();
-        if (!result) {
-            showWarning(tr("消息"), tr("串口被占用或者不存在"));
-            return;
-        }
-        _readWriter = readWriter;
-//    } else if (readWriterButtonGroup->checkedButton() == tcpRadioButton) {
-//        auto address = tcpAddressLineEdit->text();
-//        bool ok;
-//        auto port = tcpPortLineEdit->text().toInt(&ok);
-//        if (!ok) {
-//            showMessage("", tr("端口格式不正确"));
-//            return;
-//        }
+    settings->dataBits = static_cast<QSerialPort::DataBits>(serialPortDataBitsComboBox->currentText().toInt());
+    settings->stopBits = static_cast<QSerialPort::StopBits>(serialPortStopBitsComboBox->currentData().toInt());
+    settings->parity = static_cast<QSerialPort::Parity>(serialPortParityComboBox->currentData().toInt());
+    auto readWriter = new SerialReadWriter(this);
+    readWriter->setSerialSettings(*settings);
+    qDebug() << settings->name << settings->baudRate << settings->dataBits << settings->stopBits
+             << settings->parity;
+    result = readWriter->open();
+    if (!result) {
+        showWarning(tr("消息"), tr("串口被占用或者不存在"));
+        return;
+    }
+    _readWriter = readWriter;
 
-//        auto readWriter = new TcpReadWriter(this);
-//        readWriter->
-//                setAddress(address);
-//        readWriter->
-//                setPort(port);
-//        qDebug() << address << port;
-//        result = readWriter->open();
-//        if (!result) {
-//            showWarning("", tr("建立服务器失败"));
-//            return;
-//        }
-//        connect(readWriter, &TcpReadWriter::currentSocketChanged, this, &MainWindow::updateTcpClient);
-//        connect(readWriter, &TcpReadWriter::connectionClosed, this, &MainWindow::clearTcpClient);
-//        _readWriter = readWriter;
-//    } else {
-//        auto settings = new SerialSettings();
-//        settings->name = serialPortNameComboBox->currentText();
-//        settings->baudRate = serialPortBaudRateComboBox->currentText().toInt();
-
-//        settings->dataBits = static_cast<QSerialPort::DataBits>(serialPortDataBitsComboBox->currentText().toInt());
-//        settings->stopBits = static_cast<QSerialPort::StopBits>(serialPortStopBitsComboBox->currentData().toInt());
-//        settings->parity = static_cast<QSerialPort::Parity>(serialPortParityComboBox->currentData().toInt());
-
-//        auto address = tcpAddressLineEdit->text();
-//        bool ok;
-//        auto port = tcpPortLineEdit->text().toInt(&ok);
-//        if (!ok) {
-//            showMessage("", tr("端口格式不正确"));
-//            return;
-//        }
-
-//        auto readWriter = new BridgeReadWriter(this);
-
-//        readWriter->setSettings(*settings, address, static_cast<qint16>(port));
-//        result = readWriter->open();
-//        if (!result) {
-//            showWarning(tr("消息"), tr("串口被占用或者不存在"));
-//            return;
-//        }
-
-//        connect(readWriter, &BridgeReadWriter::currentSocketChanged,
-//                this, &MainWindow::updateTcpClient);
-//        connect(readWriter, &BridgeReadWriter::connectionClosed,
-//                this, &MainWindow::clearTcpClient);
-//        connect(readWriter, &BridgeReadWriter::serialDataRead, [this](const QByteArray &data) {
-//            showSendData(data);
-//        });
-//        connect(readWriter, &BridgeReadWriter::tcpDataRead, [this](const QByteArray &data) {
-//            showReadData(data);
-//        });
-
-//        _readWriter = readWriter;
-//    }
     connect(_readWriter, &SerialReadWriter::readyRead,
             this, &MainWindow::readData);
     emit serialStateChanged(result);
@@ -596,87 +442,6 @@ void MainWindow::createConnect() {
         }
     });
 
-//    connect(frameInfoSettingButton, &QPushButton::clicked, [this] {
-//        openFrameInfoSettingDialog();
-//    });
-
-    /*connect(sendFrameButton, &QPushButton::clicked, [this](bool value) {
-        Q_UNUSED(value);
-        if (!isReadWriterConnected()) {
-            handlerSerialNotOpen();
-            return;
-        }
-
-        if (frameInfo == nullptr) {
-            showWarning("警告", "数据帧信息尚未设置，请先设置");
-            openFrameInfoSettingDialog();
-            return;
-        }
-
-        if (autoSendState == AutoSendState::Sending) {
-            stopAutoSend();
-        } else {
-            _sendType = SendType::Frame;
-            updateSendData(sendHexCheckBox->isChecked(), sendTextEdit->toPlainText());
-            updateSendType();
-            sendNextData();
-            startAutoSendTimerIfNeed();
-        }
-
-        if (autoSendState == AutoSendState::Sending) {
-            sendFrameButton->setText("停止");
-        } else {
-            resetSendButtonText();
-        }
-
-    });*/
-
-    /*connect(sendLineButton, &QPushButton::clicked, [this] {
-        if (!isReadWriterConnected()) {
-            handlerSerialNotOpen();
-            return;
-        }
-
-        if (autoSendState == AutoSendState::Sending) {
-            stopAutoSend();
-        } else {
-            _sendType = SendType::Line;
-            updateSendData(sendHexCheckBox->isChecked(), sendTextEdit->toPlainText());
-            updateSendType();
-            sendNextData();
-            startAutoSendTimerIfNeed();
-        }
-
-        if (autoSendState == AutoSendState::Sending) {
-            sendLineButton->setText("停止");
-        } else {
-            resetSendButtonText();
-        }
-    });*/
-
-    /*connect(sendFixBytesButton, &QPushButton::clicked, [this] {
-        if (!isReadWriterConnected()) {
-            handlerSerialNotOpen();
-            return;
-        }
-
-        if (autoSendState == AutoSendState::Sending) {
-            stopAutoSend();
-        } else {
-            _sendType = SendType::FixedBytes;
-            updateSendData(sendHexCheckBox->isChecked(), sendTextEdit->toPlainText());
-            updateSendType();
-            sendNextData();
-            startAutoSendTimerIfNeed();
-        }
-
-        if (autoSendState == AutoSendState::Sending) {
-            sendFixBytesButton->setText("停止");
-        } else {
-            resetSendButtonText();
-        }
-    });*/
-
     connect(sendAllButton, &QPushButton::clicked, [this](bool value) {
         Q_UNUSED(value);
                 if (!isReadWriterConnected()) {
@@ -687,7 +452,6 @@ void MainWindow::createConnect() {
                 if (autoSendState == AutoSendState::Sending) {
                     stopAutoSend();
                 } else {
-//                    _sendType = SendType::Normal;
                     updateSendData(sendHexCheckBox->isChecked(), sendTextEdit->toPlainText());
                     updateSendType();
                     sendNextData();
@@ -719,51 +483,18 @@ void MainWindow::setOpenButtonText(bool isOpen) {
 }
 
 void MainWindow::createActions() {
-//    openAct = new QAction(tr("&打开(&O)"), this);
-//    openAct->setShortcut(QKeySequence::Open);
-//    openAct->setStatusTip(tr("打开一个文件"));
-//    connect(openAct, &QAction::triggered, this, &MainWindow::open);
-
-//    saveAct = new QAction(tr("&保存(&S)"), this);
-//    saveAct->setShortcut(QKeySequence::Save);
-//    saveAct->setStatusTip(tr("保存一个文件"));
-//    connect(saveAct, &QAction::triggered, this, &MainWindow::save);
-
-//    validateDataAct = new QAction(tr("计算校验(&C)"), this);
-//    validateDataAct->setShortcut(tr("Ctr+C"));
-//    validateDataAct->setStatusTip(tr("计算数据校验值"));
-//    connect(validateDataAct, &QAction::triggered, this, &MainWindow::openDataValidator);
-
 }
 
 void MainWindow::createMenu() {
-//    fileMenu = menuBar()->addMenu(tr("文件(&F)"));
-//    fileMenu->addAction(openAct);
-//    fileMenu->addAction(saveAct);
-
-//    toolMenu = menuBar()->addMenu(tr("工具(&T)"));
-//    toolMenu->addAction(validateDataAct);
-
 
 }
 
 void MainWindow::open() {
-//    auto lastDir = runConfig->lastDir;
-    QString fileName = QFileDialog::getOpenFileName(this, tr("打开数据文件"));
-    if (fileName.isEmpty()) {
-        return;
-    }
 
-    QFile file(fileName);
-    if (file.open(QIODevice::ReadOnly)) {
-//        runConfig->lastDir = getFileDir(fileName);
-        auto data = file.readAll();
-        sendTextEdit->setText(QString::fromLocal8Bit(data));
-    }
 }
 
 void MainWindow::save() {
-    saveReceivedData();
+
 }
 
 void MainWindow::tool() {
@@ -771,8 +502,7 @@ void MainWindow::tool() {
 }
 
 void MainWindow::openDataValidator() {
-//    CalculateCheckSumDialog dialog(this);
-//    dialog.exec();
+
 }
 
 void MainWindow::displayReceiveData(const QByteArray &data) {
@@ -817,20 +547,6 @@ void MainWindow::displaySentData(const QByteArray &data) {
 
 void MainWindow::openFrameInfoSettingDialog() {
 
-//    auto info = readFrameInfo();
-
-//    FrameInfoDialog dialog(info, this);
-
-//    connect(&dialog, &FrameInfoDialog::frameInfoChanged, [this](FrameInfo info) {
-//        frameInfo = new FrameInfo(info);
-//        writeFrameInfo(info);
-//        qDebug() << "head" << frameInfo->head << "end" << frameInfo->end
-//                 << "len index" << info.lenIndex << "len count" << info.lenCount
-//                 << "head len" << info.headLen << "end len" << info.endLen;
-//    });
-
-
-//    dialog.exec();
 }
 
 void MainWindow::sendNextData() {
@@ -894,10 +610,6 @@ void MainWindow::readSettings() {
 
     auto loopSend = settings.value("loop_send", false).toBool();
 
-//    auto enableFrameInfo = settings.value("enable_frame_info", false).toBool();
-
-//    auto fixByteCount = settings.value("fix_byte_count", false).toInt();
-
     sendHexCheckBox->setChecked(sendAsHex);
     displaySendDataCheckBox->setChecked(displaySendData);
     displaySendDataAsHexCheckBox->setChecked(displaySendDataAsHex);
@@ -905,28 +617,7 @@ void MainWindow::readSettings() {
     loopSendCheckBox->setChecked(loopSend);
     sendIntervalLineEdit->setText(QString::number(autoSendInterval));
 
-//    frameInfoSettingButton->setChecked(enableFrameInfo);
-//    byteCountLineEdit->setText(QString::number(fixByteCount));
-
-//    frameInfo = new FrameInfo(readFrameInfo());
-
-
-    settings.beginGroup("TcpSettings");
-//    auto tcpPort = settings.value("tcp_port").toInt();
-//    tcpPortLineEdit->setText(QString::number(tcpPort));
-
     sendTextEdit->setText(sendText);
-
-//    tcpAddressLineEdit->setText(getIp());
-
-
-    settings.beginGroup("RunConfig");
-    auto lastDir = settings.value("last_dir", "").toString();
-    auto lastFilePath = settings.value("last_file_path", "").toString();
-
-//    runConfig = new RunConfig;
-//    runConfig->lastDir = lastDir;
-//    runConfig->lastFilePath = lastFilePath;
 
     _loopSend = loopSend;
 
@@ -967,17 +658,6 @@ void MainWindow::writeSettings() {
     settings.setValue("auto_send", autoSendCheckBox->isChecked());
     settings.setValue("auto_send_interval", sendIntervalLineEdit->text().toInt());
     settings.setValue("loop_send", loopSendCheckBox->isChecked());
-
-//    settings.setValue("enable_frame_info", frameInfoSettingButton->isChecked());
-
-//    settings.setValue("fix_byte_count", byteCountLineEdit->text().toInt());
-
-    settings.beginGroup("TcpSettings");
-//    settings.setValue("tcp_port", tcpPortLineEdit->text().toInt());
-
-//    settings.beginGroup("RunConfig");
-//    settings.setValue("last_dir", runConfig->lastDir);
-//    settings.setValue("last_file_path", runConfig->lastFilePath);
 
     settings.sync();
 
@@ -1021,31 +701,6 @@ void MainWindow::clearSentData() {
 }
 
 void MainWindow::saveSentData() {
-//    auto lastDir = runConfig->lastDir;
-    QString fileName = QFileDialog::getSaveFileName(this, tr("保存发送数据"),
-                                                    tr("Text (*.txt)"));
-    if (fileName.isEmpty()) {
-        return;
-    }
-    qDebug() << fileName;
-
-    QFile::remove(fileName);
-
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly)) {
-
-//        runConfig->lastDir = getFileDir(fileName);
-
-        QDataStream in(&file);
-
-        in << sendDataBrowser->toPlainText().toLocal8Bit();
-
-        file.close();
-
-        if (okToContinue(tr("消息"), tr("发送数据保存成功,是否打开所在文件夹？"))) {
-            QProcess::startDetached("explorer.exe /select," + QDir::toNativeSeparators(fileName));
-        }
-    }
 }
 
 
@@ -1115,9 +770,6 @@ void MainWindow::stopAutoSend() {
 }
 
 void MainWindow::resetSendButtonText() {
-//    sendFrameButton->setText(tr("发送下一帧"));
-    //sendLineButton->setText(tr("发送下一行"));
-//    sendFixBytesButton->setText("发送下一帧");
     sendAllButton->setText("全部发送");
 }
 
@@ -1137,15 +789,6 @@ bool MainWindow::isReadWriterConnected() {
     return _readWriter != nullptr && _readWriter->isConnected();
 }
 
-void MainWindow::updateTcpClient(const QString &address, qint16 port) {
-//    tcpClientLabel->setText(QString("client %1:%2").arg(address).arg(port));
-    updateStatusMessage(QString(tr("与TCP客户端 %1:%2建立连接")).arg(address).arg(port));
-}
-
-void MainWindow::clearTcpClient() {
-//    tcpClientLabel->clear();
-    updateStatusMessage(QString(QString("TCP客户端已断开")));
-}
 
 void MainWindow::showReadData(const QByteArray &data) {
     if (!data.isEmpty()) {
@@ -1176,27 +819,9 @@ QStringList MainWindow::getSerialNameList() {
 
 void MainWindow::updateSendType() {
 
-//    if (serialController->sendType() == _sendType) {
-//        return;
-//    }
-
     SerialController * newController= nullptr;
 
-//    if (_sendType == SendType::Normal) {
-        newController = new NormalSerialController(serialController);
-//    } else if (_sendType == SendType::Line) {
-//        newController = new LineSerialController(serialController);
-//    } else if (_sendType == SendType::Frame) {
-//        auto controller = new FrameSerialController(serialController);
-//        if (frameInfo!= nullptr) {
-//            controller->setFrameInfo(*frameInfo);
-//        }
-//        newController = controller;
-//    } else if (_sendType == SendType::FixedBytes) {
-//        auto controller = new FixedBytesSerialController(serialController);
-//        controller->setFixedCount(byteCountLineEdit->text().toInt());
-//        newController = controller;
-//    }
+    newController = new NormalSerialController(serialController);
 
     if (newController != nullptr) {
         serialController = newController;
@@ -1212,9 +837,3 @@ void MainWindow::serialPortUpdate(bool isInsert, QString serialPortName)
 
     this->updateStatusMessage(text);
 }
-
-
-
-
-
-

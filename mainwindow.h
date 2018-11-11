@@ -32,13 +32,6 @@ class QButtonGroup;
 class SerialController;
 
 #include <QtWidgets/QMainWindow>
-//#include "FrameInfoDialog.h"
-
-//struct RunConfig {
-//    QString lastDir;
-//    QString lastFilePath;
-//};
-
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
@@ -55,11 +48,6 @@ public:
 
     ~MainWindow() override;
 
-//    enum class SendType{
-//       Normal, Line, Frame,FixedBytes
-//    };
-
-
 public:
 
 signals:
@@ -75,7 +63,6 @@ signals:
     void serialPortChanged(bool isInsert, QString serialPortName);
 
 public slots:
-
 
     void openReadWriter();
 
@@ -121,10 +108,6 @@ public slots:
 
     void updateCurrentWriteCount(qint64 count);
 
-    void updateTcpClient(const QString &address, qint16 port);
-
-    void clearTcpClient();
-
     void updateSendType();
 
     void serialPortUpdate(bool isInsert, QString serialPortName);
@@ -147,10 +130,6 @@ private:
     void readSettings();
 
     void writeSettings();
-
-//    FrameInfo readFrameInfo() const;
-
-//    void writeFrameInfo(const FrameInfo &info) const;
 
     void createActions();
 
@@ -176,32 +155,15 @@ private:
 
     QStringList getSerialNameList();
 
-//    RunConfig *runConfig{nullptr};
-
     //状态栏
     QLabel *statusBarReadBytesLabel;
     QLabel *statusBarWriteBytesLabel;
     QPushButton *statusBarResetCountButton;
 
-//    QMenu *fileMenu;
-//    QMenu *editMenu;
-//    QMenu *toolMenu;
-//    QMenu *helpMenu;
-
-//    QAction *openAct;
-//    QAction *saveAct;
-//    QAction *exitAct;
-//    QAction *validateDataAct;
-
     SerialReadWriter *_readWriter{nullptr};
 
     qint64 sendCount{0};
     qint64 receiveCount{0};
-
-//    QRadioButton *serialRadioButton;
-//    QRadioButton *tcpRadioButton;
-//    QRadioButton *brigdeRadioButton;
-
 
     QButtonGroup *readWriterButtonGroup;
 
@@ -212,11 +174,6 @@ private:
     QComboBox *serialPortDataBitsComboBox;
     QComboBox *serialPortStopBitsComboBox;
     QPushButton *openSerialButton;
-
-    // TCP设置
-//    QLineEdit *tcpAddressLineEdit;
-//    QLineEdit *tcpPortLineEdit;
-//    QLabel *tcpClientLabel;
 
     // 接收设置
     QCheckBox *addLineReturnCheckBox;
@@ -232,7 +189,6 @@ private:
     QCheckBox *displaySendDataAsHexCheckBox;
     QCheckBox *autoSendCheckBox;
     QLineEdit *sendIntervalLineEdit;
-//    QPushButton *frameInfoSettingButton;
     QPushButton *saveSentDataButton;
     QPushButton *clearSentDataButton;
 
@@ -241,18 +197,11 @@ private:
     QLineEdit *currentSendCountLineEdit;
     QLabel *totalSendCountLabel;
 
-//    FrameInfo *frameInfo;
-
-
     QTextBrowser *receiveDataBrowser;
     QTextBrowser *sendDataBrowser;
 
     QTextEdit *sendTextEdit;
 
-//    QPushButton *sendFrameButton;
-//    QPushButton *sendLineButton;
-//    QPushButton *sendFixBytesButton;
-//    QLineEdit *byteCountLineEdit;
     QPushButton *sendAllButton;
 
     AutoSendState autoSendState{AutoSendState::NotStart};
@@ -267,7 +216,6 @@ private:
 
     bool _loopSend{false};
 
-//    SendType _sendType{SendType ::Normal};
 };
 
 

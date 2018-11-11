@@ -8,10 +8,6 @@ QByteArray NormalSerialController::getNextFrame() {
     return _data;
 }
 
-//MainWindow::SendType NormalSerialController::sendType() {
-//    return MainWindow::SendType ::Normal;
-//}
-
 NormalSerialController::NormalSerialController():SerialController() {
 
 }

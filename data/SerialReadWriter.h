@@ -6,7 +6,6 @@
 #define SERIALWIZARD_SERIALREADWRITER_H
 
 #include <QtSerialPort/QSerialPort>
-//#include "AbstractReadWriter.h"
 
 struct SerialSettings {
     QString name;
