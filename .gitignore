@@ -7,3 +7,9 @@
 *.Release
 *.Debug
 *.exe
+*.o
+.qmake.stash
+SerialWizard
+moc_*.h
+moc_*.cpp
+Makefile
